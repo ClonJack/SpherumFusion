@@ -21,13 +21,8 @@ namespace Spherum.Player
         [Header("IK")] [SerializeField] private Transform _targetLeft;
         [SerializeField] private Transform _targetRight;
 
-        [Header("Xr")] [SerializeField] private InputActionManager _inputActionManager;
-        [SerializeField] private XROrigin _xrOrigin;
-        [SerializeField] private LocomotionSystem _locomotionSystem;
-        [SerializeField] private ContinuousMoveProviderBase _continuousMove;
-        [SerializeField] private ContinuousTurnProviderBase _continuousTurn;
-        [SerializeField] private CharacterControllerDriver _characterController;
-        [SerializeField] private GameObject _camera;
+        [Header("Xr")] 
+        [SerializeField] private GameObject _xrController;
 
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
@@ -53,10 +48,11 @@ namespace Spherum.Player
         {
             if (!HasInputAuthority)
             {
-                _camera.gameObject.SetActive(false);
                 return;
             }
 
+            _xrController.gameObject.SetActive(true);
+            
             if (_inputCalibarate.action.WasPressedThisFrame())
             {
                 var sizeF = (_vrIk.solver.spine.headTarget.position.y - _vrIk.references.root.position.y) /
