@@ -12,7 +12,7 @@ namespace Spherum.Network
         {
             if (player == Runner.LocalPlayer)
             {
-                Runner.Spawn(_playerPrefab, new Vector3(0, 1, 0), quaternion.identity, player);
+                Runner.Spawn(_playerPrefab, new Vector3(0, 0, 0), quaternion.identity, player);
             }
         }
     }

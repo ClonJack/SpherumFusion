@@ -1,8 +1,10 @@
 ﻿using Fusion;
 using RootMotion.FinalIK;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 namespace Spherum.Player
 {
@@ -18,11 +20,14 @@ namespace Spherum.Player
 
         [Header("IK")] [SerializeField] private Transform _targetLeft;
         [SerializeField] private Transform _targetRight;
-        
-        [Header("Xr")] 
+
+        [Header("Xr")] [SerializeField] private InputActionManager _inputActionManager;
+        [SerializeField] private XROrigin _xrOrigin;
+        [SerializeField] private LocomotionSystem _locomotionSystem;
         [SerializeField] private ContinuousMoveProviderBase _continuousMove;
         [SerializeField] private ContinuousTurnProviderBase _continuousTurn;
-
+        [SerializeField] private CharacterControllerDriver _characterController;
+        [SerializeField] private GameObject _camera;
 
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
@@ -46,11 +51,11 @@ namespace Spherum.Player
 
         public override void FixedUpdateNetwork()
         {
-            _animator.SetFloat(_hashGripLeft, _leftController.selectActionValue.action.ReadValue<float>());
-            _animator.SetFloat(_hashGripRight, _rightController.selectActionValue.action.ReadValue<float>());
-            _animator.SetFloat(_hashTriggerLeft, _leftController.activateActionValue.action.ReadValue<float>());
-            _animator.SetFloat(_hashTriggerRight, _rightController.activateActionValue.action.ReadValue<float>());
-
+            if (!HasInputAuthority)
+            {
+                _camera.gameObject.SetActive(false);
+                return;
+            }
 
             if (_inputCalibarate.action.WasPressedThisFrame())
             {
@@ -59,6 +64,11 @@ namespace Spherum.Player
 
                 _vrIk.references.root.localScale *= sizeF * _scaleMlp;
             }
+
+            _animator.SetFloat(_hashGripLeft, _leftController.selectActionValue.action.ReadValue<float>());
+            _animator.SetFloat(_hashGripRight, _rightController.selectActionValue.action.ReadValue<float>());
+            _animator.SetFloat(_hashTriggerLeft, _leftController.activateActionValue.action.ReadValue<float>());
+            _animator.SetFloat(_hashTriggerRight, _rightController.activateActionValue.action.ReadValue<float>());
         }
     }
 }
