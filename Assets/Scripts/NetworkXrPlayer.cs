@@ -1,11 +1,12 @@
-﻿using RootMotion.FinalIK;
+﻿using Fusion;
+using RootMotion.FinalIK;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Spherum.Player
 {
-    public class XRPlayer : MonoBehaviour
+    public class NetworkXrPlayer : NetworkBehaviour
     {
         [Header("Avatar")] [SerializeField] private Animator _animator;
         [SerializeField] private VRIK _vrIk;
@@ -17,6 +18,10 @@ namespace Spherum.Player
 
         [Header("IK")] [SerializeField] private Transform _targetLeft;
         [SerializeField] private Transform _targetRight;
+        
+        [Header("Xr")] 
+        [SerializeField] private ContinuousMoveProviderBase _continuousMove;
+        [SerializeField] private ContinuousTurnProviderBase _continuousTurn;
 
 
         private int _hashTriggerLeft;
@@ -38,7 +43,8 @@ namespace Spherum.Player
             _targetRight.transform.position = _rightController.transform.position;
         }
 
-        private void Update()
+
+        public override void FixedUpdateNetwork()
         {
             _animator.SetFloat(_hashGripLeft, _leftController.selectActionValue.action.ReadValue<float>());
             _animator.SetFloat(_hashGripRight, _rightController.selectActionValue.action.ReadValue<float>());
