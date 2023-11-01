@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Camera: {fileID: 513551637020200638}
   m_OriginBaseGameObject: {fileID: 513551636364913735}
   m_CameraFloorOffsetObject: {fileID: 513551636446134522}
-  m_RequestedTrackingOriginMode: 0
+  m_RequestedTrackingOriginMode: 2
   m_CameraYOffset: 0
 --- !u!114 &513551636364914107
 MonoBehaviour:
@@ -483,13 +483,7 @@ MonoBehaviour:
     m_Reference: {fileID: -6884289301053659871, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   _targetLeft: {fileID: 513551637625359477}
   _targetRight: {fileID: 513551636675287194}
-  _inputActionManager: {fileID: 513551636364914107}
-  _xrOrigin: {fileID: 513551636364914106}
-  _locomotionSystem: {fileID: 513551636364914104}
-  _continuousMove: {fileID: 513551636364913734}
-  _continuousTurn: {fileID: 513551636364914105}
-  _characterController: {fileID: 0}
-  _camera: {fileID: 513551636446134522}
+  _xr: {fileID: 0}
 --- !u!114 &2667345286102472604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3676,7 +3670,7 @@ MonoBehaviour:
       velocityFactor: 0.4
       maxLegStretch: 1
       rootSpeed: 20
-      stepSpeed: 4
+      stepSpeed: 3
       stepHeight:
         serializedVersion: 2
         m_Curve:
