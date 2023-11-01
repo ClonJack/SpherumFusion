@@ -19,8 +19,7 @@ namespace Spherum.Player
         [Header("IK")] [SerializeField] private Transform _targetLeft;
         [SerializeField] private Transform _targetRight;
 
-        [Header("Xr")] 
-        [SerializeField] private GameObject _xrController;
+        [Header("Xr")] [SerializeField] private GameObject _xr;
 
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
@@ -35,22 +34,22 @@ namespace Spherum.Player
             _hashGripRight = Animator.StringToHash("Grip_Right");
         }
 
-        private void Start()
-        {
-            _targetLeft.transform.position = _leftController.transform.position;
-            _targetRight.transform.position = _rightController.transform.position;
-        }
-
-
         public override void FixedUpdateNetwork()
         {
-            if (!HasInputAuthority)
+            if (!HasStateAuthority)
             {
                 return;
             }
 
-            _xrController.gameObject.SetActive(true);
+            _targetLeft.position = _leftController.transform.position;
+            _targetLeft.rotation =
+                _leftController.transform.rotation * Quaternion.Euler(new Vector3(-90, 180, 0));
             
+            _targetRight.position = _rightController.transform.position;
+            _targetRight.rotation = _rightController.transform.rotation * Quaternion.Euler(new Vector3(90, 180, 0));
+            
+            _xr.SetActive(true);
+
             if (_inputCalibarate.action.WasPressedThisFrame())
             {
                 var sizeF = (_vrIk.solver.spine.headTarget.position.y - _vrIk.references.root.position.y) /
