@@ -1,10 +1,8 @@
 ﻿using Fusion;
 using RootMotion.FinalIK;
-using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
-using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 namespace Spherum.Player
 {
