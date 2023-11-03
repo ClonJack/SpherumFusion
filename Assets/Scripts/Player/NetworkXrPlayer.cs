@@ -1,5 +1,4 @@
-﻿using System;
-using Fusion;
+﻿using Fusion;
 using RootMotion.FinalIK;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,8 +25,9 @@ namespace Spherum.Player
         [SerializeField] private Transform _playerArmature;
 
         [SerializeField] private float _offestZ;
-        
-        [Networked(OnChanged = nameof(ChangeScalePlayer))] private Vector3 _scale { get; set; }
+
+        [Networked(OnChanged = nameof(ChangeScalePlayer))]
+        public Vector3 Scale { get; set; }
 
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
@@ -46,9 +46,9 @@ namespace Spherum.Player
             _targetRight.position = _rightController.transform.position;
         }
 
-        protected static void ChangeScalePlayer(Changed<NetworkXrPlayer> network)
+        private static void ChangeScalePlayer(Changed<NetworkXrPlayer> network)
         {
-            network.Behaviour._scale = network.Behaviour._scale;
+            network.Behaviour._vrIk.references.root.localScale = network.Behaviour.Scale;
         }
 
         public override void FixedUpdateNetwork()
@@ -57,6 +57,15 @@ namespace Spherum.Player
             {
                 return;
             }
+
+            if (_inputCalibarate.action.WasPressedThisFrame())
+            {
+                var sizeF = (_vrIk.solver.spine.headTarget.position.y - _vrIk.references.root.position.y) /
+                            (_vrIk.references.head.position.y - _vrIk.references.root.position.y);
+
+                Scale = _vrIk.references.root.localScale * sizeF * _scaleMlp;
+            }
+
 
             _targetHead.position = _camera.TransformPoint(new Vector3(0, 0, -0.15f));
             _targetHead.rotation = _camera.rotation;
@@ -68,16 +77,6 @@ namespace Spherum.Player
             _targetRight.rotation = _rightController.transform.rotation * Quaternion.Euler(new Vector3(90, 180, 0));
 
             _xrController.SetActive(true);
-
-            if (_inputCalibarate.action.WasPressedThisFrame())
-            {
-                var sizeF = (_vrIk.solver.spine.headTarget.position.y - _vrIk.references.root.position.y) /
-                            (_vrIk.references.head.position.y - _vrIk.references.root.position.y);
-                
-                _vrIk.references.root.localScale *= sizeF * _scaleMlp;
-                
-                _scale = _vrIk.references.root.localScale;
-            }
 
             _animator.SetFloat(_hashGripLeft, _leftController.selectActionValue.action.ReadValue<float>());
             _animator.SetFloat(_hashGripRight, _rightController.selectActionValue.action.ReadValue<float>());
