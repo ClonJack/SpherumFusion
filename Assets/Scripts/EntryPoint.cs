@@ -7,6 +7,7 @@ namespace Spherum
     {
         [SerializeField] private NetworkRunner _networkRunner;
         [SerializeField] private NetworkSceneManagerDefault _networkScene;
+        [SerializeField] private int _playerCount;
 
         private async void Awake()
         {
@@ -14,7 +15,8 @@ namespace Spherum
             {
                 GameMode = GameMode.Shared,
                 SessionName = "Spherum",
-                SceneManager = _networkScene
+                SceneManager = _networkScene,
+                PlayerCount = _playerCount
             });
         }
     }

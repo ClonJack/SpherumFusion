@@ -624,6 +624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _networkRunner: {fileID: 535870013}
   _networkScene: {fileID: 535870016}
+  _playerCount: 30
 --- !u!4 &1718767105
 Transform:
   m_ObjectHideFlags: 0
