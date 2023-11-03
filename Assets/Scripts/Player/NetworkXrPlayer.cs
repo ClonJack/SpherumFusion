@@ -23,12 +23,17 @@ namespace Spherum.Player
 
         [Header("Xr")] [SerializeField] private GameObject _xrController;
         [SerializeField] private Transform _camera;
+        [SerializeField] private Transform _playerArmature;
 
         [SerializeField] private float _offestZ;
+        
+        [Networked(OnChanged = nameof(ChangeScalePlayer))] private Vector3 _scale { get; set; }
+
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
         private int _hashGripLeft;
         private int _hashGripRight;
+
 
         private void Awake()
         {
@@ -40,7 +45,11 @@ namespace Spherum.Player
             _targetLeft.position = _leftController.transform.position;
             _targetRight.position = _rightController.transform.position;
         }
-        
+
+        protected static void ChangeScalePlayer(Changed<NetworkXrPlayer> network)
+        {
+            network.Behaviour._scale = network.Behaviour._scale;
+        }
 
         public override void FixedUpdateNetwork()
         {
@@ -64,8 +73,10 @@ namespace Spherum.Player
             {
                 var sizeF = (_vrIk.solver.spine.headTarget.position.y - _vrIk.references.root.position.y) /
                             (_vrIk.references.head.position.y - _vrIk.references.root.position.y);
-
+                
                 _vrIk.references.root.localScale *= sizeF * _scaleMlp;
+                
+                _scale = _vrIk.references.root.localScale;
             }
 
             _animator.SetFloat(_hashGripLeft, _leftController.selectActionValue.action.ReadValue<float>());

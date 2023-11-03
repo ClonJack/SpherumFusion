@@ -1383,7 +1383,6 @@ GameObject:
   - component: {fileID: 5445309618591603930}
   - component: {fileID: 2121631844193945248}
   - component: {fileID: 2121631844193945249}
-  - component: {fileID: 4599346537277475832}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -1685,34 +1684,6 @@ MonoBehaviour:
       onRightFootstep:
         m_PersistentCalls:
           m_Calls: []
---- !u!114 &4599346537277475832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4673171344284436064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 158639473, guid: e725a070cec140c4caffb81624c8c787, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _interpolationDataSource: 0
-  InterpolationSpace: 0
-  InterpolationTarget: {fileID: 226463300086174652}
-  InterpolateErrorCorrection: 1
-  InterpolatedErrorCorrectionSettings:
-    MinRate: 3.3
-    MaxRate: 10
-    PosBlendStart: 0.25
-    PosBlendEnd: 1
-    PosMinCorrection: 0.025
-    PosTeleportDistance: 2
-    RotBlendStart: 0.1
-    RotBlendEnd: 0.5
-    RotTeleportRadians: 1.5
-  UseLegacySharedModeInterpolation: 0
-  TargetInterpolationDelay: 0.03
 --- !u!1 &4744050654194359475
 GameObject:
   m_ObjectHideFlags: 0
@@ -3052,6 +3023,7 @@ MonoBehaviour:
   _targetHead: {fileID: 9049528585948093665}
   _xrController: {fileID: 8277430678855519887}
   _camera: {fileID: 9049528584818219597}
+  _playerArmature: {fileID: 0}
   _offestZ: -0.15
 --- !u!114 &6895770056925299563
 MonoBehaviour:
@@ -3078,7 +3050,6 @@ MonoBehaviour:
   - {fileID: 9049528584433334603}
   - {fileID: 7191727265475204901}
   - {fileID: 7150394268700505766}
-  - {fileID: 4599346537277475832}
   - {fileID: 6482157160415504267}
   - {fileID: 2315673289613492304}
   - {fileID: 4986292653263769589}
