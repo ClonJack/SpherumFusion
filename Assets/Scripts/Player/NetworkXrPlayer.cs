@@ -48,7 +48,7 @@ namespace Spherum.Player
 
         private static void ChangeScalePlayer(Changed<NetworkXrPlayer> network)
         {
-            network.Behaviour._vrIk.references.root.localScale = network.Behaviour.Scale;
+            network.Behaviour.transform.localScale = network.Behaviour.Scale;
         }
 
         public override void FixedUpdateNetwork()
