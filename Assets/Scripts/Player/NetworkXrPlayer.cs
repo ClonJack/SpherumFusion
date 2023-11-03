@@ -1,4 +1,5 @@
-﻿using Fusion;
+﻿using System;
+using Fusion;
 using RootMotion.FinalIK;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,9 +19,12 @@ namespace Spherum.Player
 
         [Header("IK")] [SerializeField] private Transform _targetLeft;
         [SerializeField] private Transform _targetRight;
+        [SerializeField] private Transform _targetHead;
 
-        [Header("Xr")] [SerializeField] private GameObject _xr;
+        [Header("Xr")] [SerializeField] private GameObject _xrController;
+        [SerializeField] private Transform _camera;
 
+        [SerializeField] private float _offestZ;
         private int _hashTriggerLeft;
         private int _hashTriggerRight;
         private int _hashGripLeft;
@@ -32,7 +36,11 @@ namespace Spherum.Player
             _hashTriggerRight = Animator.StringToHash("Trigger_Right");
             _hashGripLeft = Animator.StringToHash("Grip_Left");
             _hashGripRight = Animator.StringToHash("Grip_Right");
+
+            _targetLeft.position = _leftController.transform.position;
+            _targetRight.position = _rightController.transform.position;
         }
+        
 
         public override void FixedUpdateNetwork()
         {
@@ -41,14 +49,16 @@ namespace Spherum.Player
                 return;
             }
 
-            _targetLeft.position = _leftController.transform.position;
-            _targetLeft.rotation =
-                _leftController.transform.rotation * Quaternion.Euler(new Vector3(-90, 180, 0));
-            
-            _targetRight.position = _rightController.transform.position;
+            _targetHead.position = _camera.TransformPoint(new Vector3(0, 0, -0.15f));
+            _targetHead.rotation = _camera.rotation;
+
+            _targetLeft.position = _leftController.transform.TransformPoint(Vector3.zero);
+            _targetLeft.rotation = _leftController.transform.rotation * Quaternion.Euler(-90, 180, 0);
+
+            _targetRight.position = _rightController.transform.TransformPoint(Vector3.zero);
             _targetRight.rotation = _rightController.transform.rotation * Quaternion.Euler(new Vector3(90, 180, 0));
-            
-            _xr.SetActive(true);
+
+            _xrController.SetActive(true);
 
             if (_inputCalibarate.action.WasPressedThisFrame())
             {
