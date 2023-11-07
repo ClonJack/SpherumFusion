@@ -3003,7 +3003,7 @@ MonoBehaviour:
   _interpolationDataSource: 0
   _animator: {fileID: 2121631844193945248}
   _vrIk: {fileID: 2121631844193945249}
-  _scaleMlp: 1.03
+  _scaleMlp: 10
   _leftController: {fileID: 9049528585829198493}
   _rightController: {fileID: 9049528585820484123}
   _inputCalibarate:
