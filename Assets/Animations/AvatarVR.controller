@@ -104,8 +104,8 @@ AnimatorStateMachine:
   m_Name: Base
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: -1297108084531736131}
-    m_Position: {x: 340, y: 120, z: 0}
+    m_State: {fileID: -2014670146081339541}
+    m_Position: {x: 371.78488, y: 27.624367, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -115,15 +115,15 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: -1297108084531736131}
---- !u!1102 &-1297108084531736131
+  m_DefaultState: {fileID: -2014670146081339541}
+--- !u!1102 &-2014670146081339541
 AnimatorState:
   serializedVersion: 6
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New State
+  m_Name: Capoeira
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -136,7 +136,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 739b2627204c24240aa40c4f67f59d0e, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: c715000066df8b44cb24adaedcc8f3db, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
