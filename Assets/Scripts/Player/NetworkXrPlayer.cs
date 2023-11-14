@@ -67,7 +67,11 @@ namespace Spherum.Player
             }
 
 
-            _targetHead.position = _camera.TransformPoint(new Vector3(0, 0, -0.15f));
+            var fixedTransform = _camera.TransformPoint(new Vector3(0, 0, -0.15f));
+
+            fixedTransform.y = Mathf.Clamp(fixedTransform.y, 0, 1.5f);
+
+            _targetHead.position = fixedTransform;
             _targetHead.rotation = _camera.rotation;
 
             _targetLeft.position = _leftController.transform.TransformPoint(Vector3.zero);
