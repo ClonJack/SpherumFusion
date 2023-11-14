@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interpolationDataSource: 0
-  _animator: {fileID: 0}
+  _animator: {fileID: 4265077403487970164}
   _vrIk: {fileID: 1659897056270882922}
   _scaleMlp: 10
   _leftController: {fileID: 3998316283588145598}
@@ -1267,6 +1267,10 @@ PrefabInstance:
       propertyPath: m_AABB.m_Extent.z
       value: 0.10111082
       objectReference: {fileID: 0}
+    - target: {fileID: -4748361991329772099, guid: e6fb3c4d202510d4aaff2755ea7bc943, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4d668af78c2d05d4fb00c35e28e7b99b, type: 2}
     - target: {fileID: -3910990755373119420, guid: e6fb3c4d202510d4aaff2755ea7bc943, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1377,6 +1381,11 @@ Transform:
 --- !u!4 &4191080074548313615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4682826898755301178, guid: e6fb3c4d202510d4aaff2755ea7bc943, type: 3}
+  m_PrefabInstance: {fileID: 372378888713580233}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &4265077403487970164 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: -4748361991329772099, guid: e6fb3c4d202510d4aaff2755ea7bc943, type: 3}
   m_PrefabInstance: {fileID: 372378888713580233}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &4380125416922518640 stripped
